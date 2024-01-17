@@ -17,7 +17,7 @@ func NewDatabase(i *gorm.DB) (database Database) {
 }
 
 func ConnectDB() (database *gorm.DB, err error) {
-	dsn := "eulabsadmin:eulabspassword@tcp(127.0.0.1:3306)/eulabs?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "eulabsadmin:eulabspassword@tcp(db:3306)/eulabs"
 	instance, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	if err != nil {

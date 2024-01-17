@@ -1,6 +1,15 @@
 version: "3.8"
 
 services:
+  api:
+    container_name: eulabs-api
+    build:
+      context: .
+    restart: always
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
   db:
     container_name: eulabs-db
     image: mysql:8.2.0
