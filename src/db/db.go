@@ -1,6 +1,7 @@
 package db
 
 import (
+	"github.com/pedrooctaviocruvinel/eulabs/src/types"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -28,5 +29,9 @@ func ConnectDB() (database *gorm.DB, err error) {
 }
 
 func migrateDatabase(i *gorm.DB) (err error) {
+	if err := i.AutoMigrate(&types.Product{}); err != nil {
+		return err
+	}
+
 	return nil
 }

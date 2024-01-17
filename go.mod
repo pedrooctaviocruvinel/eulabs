@@ -3,6 +3,7 @@ module github.com/pedrooctaviocruvinel/eulabs
 go 1.21.5
 
 require (
+	github.com/google/uuid v1.5.0
 	gorm.io/driver/mysql v1.5.2
 	gorm.io/gorm v1.25.5
 )
