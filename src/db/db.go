@@ -1,6 +1,9 @@
 package db
 
 import (
+	"fmt"
+
+	"github.com/pedrooctaviocruvinel/eulabs/src/config"
 	"github.com/pedrooctaviocruvinel/eulabs/src/types"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -17,7 +20,7 @@ func NewDatabase(i *gorm.DB) (database Database) {
 }
 
 func ConnectDB() (database *gorm.DB, err error) {
-	dsn := "eulabsadmin:eulabspassword@tcp(db:3306)/eulabs"
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", config.Database.User, config.Database.Password, config.Database.Host, config.Database.Port, config.Database.Name)
 	instance, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	if err != nil {

@@ -1,8 +1,11 @@
 package api
 
 import (
+	"fmt"
+
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	"github.com/pedrooctaviocruvinel/eulabs/src/config"
 	"github.com/pedrooctaviocruvinel/eulabs/src/services/product_services"
 )
 
@@ -34,5 +37,5 @@ func (a *Api) configureMiddlewares() {
 }
 
 func (a *Api) Run() {
-	panic(a.echo.Start(":3000"))
+	panic(a.echo.Start(fmt.Sprintf(":%s", config.Api.Port)))
 }
