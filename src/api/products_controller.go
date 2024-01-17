@@ -7,7 +7,7 @@ import (
 )
 
 func (a *Api) configureProductRoutes() {
-	a.e.GET("/products/", a.listProducts)
+	a.echo.GET("/products/", a.listProducts)
 }
 
 func (a *Api) listProducts(c echo.Context) (err error) {
