@@ -1,7 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+
+	"github.com/pedrooctaviocruvinel/eulabs/src/db"
+)
 
 func main() {
-	fmt.Println("Hello World")
+	instance, err := db.ConnectDB()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	database := db.NewDatabase(instance)
+
+	fmt.Println(database)
 }
