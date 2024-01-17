@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  db:
+    container_name: eulabs-db
+    image: mysql:8.2.0
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_DATABASE=eulabs
+      - MYSQL_USER=eulabsadmin
+      - MYSQL_PASSWORD=eulabspassword
+      - MYSQL_ROOT_PASSWORD=eulabsrootpassword
+    volumes:
+      - eulabs:/var/lib/mysql
+
+volumes:
+  eulabs:
