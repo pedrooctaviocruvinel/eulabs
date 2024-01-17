@@ -1,10 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
+	"github.com/pedrooctaviocruvinel/eulabs/src/api"
 	"github.com/pedrooctaviocruvinel/eulabs/src/db"
+	"github.com/pedrooctaviocruvinel/eulabs/src/services/product_services"
 )
 
 func main() {
@@ -15,5 +16,9 @@ func main() {
 
 	database := db.NewDatabase(instance)
 
-	fmt.Println(database)
+	productServices := product_services.NewProductServices(database.ProductRepository)
+
+	api := api.NewApi(productServices)
+
+	api.Run()
 }

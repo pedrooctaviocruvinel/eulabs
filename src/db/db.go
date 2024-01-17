@@ -7,10 +7,13 @@ import (
 )
 
 type Database struct {
+	ProductRepository ProductRepository
 }
 
 func NewDatabase(i *gorm.DB) (database Database) {
-	return Database{}
+	return Database{
+		ProductRepository: *newProductRepository(i),
+	}
 }
 
 func ConnectDB() (database *gorm.DB, err error) {

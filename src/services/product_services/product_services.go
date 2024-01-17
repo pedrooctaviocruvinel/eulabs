@@ -1,4 +1,4 @@
-package services
+package product_services
 
 import "github.com/pedrooctaviocruvinel/eulabs/src/types"
 
