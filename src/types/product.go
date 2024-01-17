@@ -15,3 +15,7 @@ func NewProduct(n string, s int) (product *Product) {
 		Stock: s,
 	}
 }
+
+type IProductRepository interface {
+	List() (products []Product)
+}
