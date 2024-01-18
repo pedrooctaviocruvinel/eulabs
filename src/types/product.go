@@ -21,4 +21,5 @@ type IProductRepository interface {
 	GetByID(i string) (product Product)
 	Create(p Product)
 	Update(p Product)
+	Delete(p Product)
 }

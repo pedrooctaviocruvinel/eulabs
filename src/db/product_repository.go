@@ -34,3 +34,7 @@ func (pr ProductRepository) Create(p types.Product) {
 func (pr ProductRepository) Update(p types.Product) {
 	pr.instance.Save(p)
 }
+
+func (pr ProductRepository) Delete(p types.Product) {
+	pr.instance.Delete(p)
+}

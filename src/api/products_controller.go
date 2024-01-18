@@ -13,6 +13,7 @@ func (a *Api) configureProductRoutes() {
 	group.GET("/", a.listProducts)
 	group.POST("/", a.createProduct)
 	group.PUT("/:id/", a.updateProduct)
+	group.DELETE("/:id/", a.deleteProduct)
 }
 
 func (a *Api) listProducts(c echo.Context) (err error) {
@@ -55,4 +56,16 @@ func (a *Api) updateProduct(c echo.Context) (err error) {
 	}
 
 	return c.JSON(http.StatusOK, updateProductResult)
+}
+
+func (a *Api) deleteProduct(c echo.Context) (err error) {
+	id := c.Param("id")
+
+	deleteProductResult := a.productServices.Delete(id)
+
+	if !deleteProductResult.Success {
+		return c.JSON(http.StatusBadRequest, deleteProductResult)
+	}
+
+	return c.JSON(http.StatusOK, deleteProductResult)
 }
