@@ -18,5 +18,7 @@ func NewProduct(n string, s int) (product *Product) {
 
 type IProductRepository interface {
 	List() (products []Product)
+	GetByID(i string) (product Product)
 	Create(p Product)
+	Update(p Product)
 }

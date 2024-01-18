@@ -20,3 +20,10 @@ func NewResultWrapperSucceded[T any](d T) ResultWrapper[T] {
 		Data:    d,
 	}
 }
+
+func NewResultWrapperSuccededEmpty[T any]() ResultWrapper[T] {
+	return ResultWrapper[T]{
+		Success: true,
+		Errors:  nil,
+	}
+}

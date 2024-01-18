@@ -21,6 +21,16 @@ func (pr ProductRepository) List() (products []types.Product) {
 	return products
 }
 
+func (pr ProductRepository) GetByID(i string) (product types.Product) {
+	pr.instance.Where(types.Product{ID: i}).First(&product)
+
+	return product
+}
+
 func (pr ProductRepository) Create(p types.Product) {
 	pr.instance.Create(p)
+}
+
+func (pr ProductRepository) Update(p types.Product) {
+	pr.instance.Save(p)
 }

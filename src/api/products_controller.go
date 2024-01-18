@@ -12,6 +12,7 @@ func (a *Api) configureProductRoutes() {
 
 	group.GET("/", a.listProducts)
 	group.POST("/", a.createProduct)
+	group.PUT("/:id/", a.updateProduct)
 }
 
 func (a *Api) listProducts(c echo.Context) (err error) {
@@ -37,4 +38,21 @@ func (a *Api) createProduct(c echo.Context) (err error) {
 	}
 
 	return c.JSON(http.StatusOK, createProductResult)
+}
+
+func (a *Api) updateProduct(c echo.Context) (err error) {
+	id := c.Param("id")
+
+	convertBodyResult := convertBody[product_services.UpdateProductDTORequest](c)
+	if !convertBodyResult.Success {
+		return c.JSON(http.StatusBadRequest, convertBodyResult)
+	}
+
+	updateProductResult := a.productServices.Update(id, &convertBodyResult.Data)
+
+	if !updateProductResult.Success {
+		return c.JSON(http.StatusBadRequest, updateProductResult)
+	}
+
+	return c.JSON(http.StatusOK, updateProductResult)
 }
