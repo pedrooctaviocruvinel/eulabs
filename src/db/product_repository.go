@@ -20,3 +20,7 @@ func (pr ProductRepository) List() (products []types.Product) {
 
 	return products
 }
+
+func (pr ProductRepository) Create(p types.Product) {
+	pr.instance.Create(p)
+}

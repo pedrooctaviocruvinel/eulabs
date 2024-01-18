@@ -3,9 +3,9 @@ package types
 import "github.com/google/uuid"
 
 type Product struct {
-	ID    string `gorm:"type:char(36);primary_key;"`
-	Name  string `gorm:"type:varchar(256);not null;"`
-	Stock int    `gorm:"not null;"`
+	ID    string `gorm:"type:char(36);primary_key;" valid:"required, uuid"`
+	Name  string `gorm:"type:varchar(256);not null;" valid:"required, maxstringlength(256)"`
+	Stock int    `gorm:"not null;" valid:"required"`
 }
 
 func NewProduct(n string, s int) (product *Product) {
@@ -18,4 +18,5 @@ func NewProduct(n string, s int) (product *Product) {
 
 type IProductRepository interface {
 	List() (products []Product)
+	Create(p Product)
 }
